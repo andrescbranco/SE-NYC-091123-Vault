@@ -15,10 +15,37 @@ class Trip:
         # DO NOT EDIT – Datetime Initialization Script –––––––––––– #
         
         self.visitor = visitor
+        visitor.access_current_trips(self)
+        visitor.access_current_parks(national_park)
         self.national_park = national_park
+        national_park.access_current_trips(self)
+        national_park.access_current_visitors(visitor)
+
 
         Trip.counter += 1
         Trip.catalog.append(self)
+
+    @property
+    def visitor(self):
+        return self._visitor
+    
+    @visitor.setter
+    def visitor (self, visitor):
+        from classes.visitor import Visitor
+        if not isinstance(visitor,Visitor):
+            raise Exception
+        self._visitor = visitor
+
+    @property
+    def national_park(self):
+        return self._national_park
+    
+    @national_park.setter
+    def national_park (self, national_park):
+        from classes.nationalpark import NationalPark
+        if not isinstance(national_park,NationalPark):
+            raise Exception
+        self._national_park = national_park
 
     def __repr__(self):
         from datetime import datetime
