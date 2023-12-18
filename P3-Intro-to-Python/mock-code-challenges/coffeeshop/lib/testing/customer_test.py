@@ -91,9 +91,9 @@ class TestCustomer:
         coffee = Coffee("Espresso")
         customer = Customer('Steve')
         transaction = customer.place_order("Espresso", 3)
-        assert (coffee in customer.access_current_coffees())
+        assert (transaction.coffee in customer.access_current_coffees())
         assert (transaction.price == 3)
-
+  
     def test_get_total_money(self):
         ''' Tests that a customer can add up prices across all transactions. '''
         coffee_1 = Coffee("Cappuccino")
